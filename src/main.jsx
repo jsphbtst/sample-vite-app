@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.jsx'
 import UserByIdPage from './pages/UserByIdPage.jsx'
 import UserAboutPage from './pages/UserAboutPage.jsx'
+import SignInPage from './pages/SignInPage.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import ProtectedRoute from './containers/ProtectedRoute.jsx'
 import './index.css'
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/abc",
     element: <h1>Page ABC</h1>
+  },
+  {
+    path: "/sign-in",
+    element: <SignInPage />
   },
   {
     path: "/users/:userId",

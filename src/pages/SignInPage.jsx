@@ -18,7 +18,7 @@ export default function SignInPage() {
     signInWithEmailAndPassword(firebaseAuth, email, password)
       .then(() => {
         login()
-        navigate("/jedi/1");
+        navigate("/users/3/about");
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -76,7 +76,7 @@ export default function SignInPage() {
             padding: "10px",
           }}
         >
-          LOGIN NA SIGE NA
+          LOGIN
         </button>
       </div>
     </div>
