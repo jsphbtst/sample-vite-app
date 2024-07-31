@@ -1,30 +1,20 @@
-import { useState } from 'react'
-import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { firebaseAuth } from '../configs/firebase'
-import { useAuth } from '../hooks/useAuth';
+import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useAuth } from "../hooks/useAuth";
+import { firebaseAuth } from "../configs/firebase";
 
-export default function SignInPage() {
-  const navigate = useNavigate()
-  const { isLoggedIn, login, logout, load } = useAuth();
+export default function SignUpPage() {
+  const { isLoggedIn, login, logout } = useAuth()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
-  const loginUser = () => {
-    setError("");
-    load()
-
-    signInWithEmailAndPassword(firebaseAuth, email, password)
-      .then(() => {
-        login()
-        navigate("/users/3/about");
-      })
+  const registerUser = () => {
+    createUserWithEmailAndPassword(firebaseAuth, email, password)
+      .then(() => login())
       .catch((error) => {
         const errorMessage = error.message;
-        setError("Failed to sign in. Try again later");
-        console.error(errorMessage)
         logout()
+        console.log(errorMessage);
       });
   };
 
@@ -66,19 +56,15 @@ export default function SignInPage() {
         />
       </div>
 
-      {error.length > 0 && (
-        <h2 style={{ color: "red", fontWeight: "bold" }}>{error}</h2>
-      )}
-
       <div>
         <button
-          onClick={loginUser}
+          onClick={registerUser}
           style={{
             fontSize: "21px",
             padding: "10px",
           }}
         >
-          LOGIN
+          REGISTER NOW
         </button>
       </div>
     </div>

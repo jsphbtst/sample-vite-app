@@ -5,6 +5,7 @@ import App from './App.jsx'
 import UserByIdPage from './pages/UserByIdPage.jsx'
 import UserAboutPage from './pages/UserAboutPage.jsx'
 import SignInPage from './pages/SignInPage.jsx'
+import SignUpPage from './pages/SignUpPage.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import ProtectedRoute from './containers/ProtectedRoute.jsx'
 import './index.css'
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/sign-in",
     element: <SignInPage />
+  },
+  {
+    path: "/sign-up",
+    element: <SignUpPage />
   },
   {
     path: "/users/:userId",
