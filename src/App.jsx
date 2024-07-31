@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { LogoImages } from './components/LogoImages'
 
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const navigate = useNavigate()
 
   const isDarkModeDefaultEnabled = import.meta.env.VITE_DARK_MODE_DEFAULT === 'true'
 
@@ -20,6 +22,9 @@ function App() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
+
+        <button onClick={() => navigate("/abc")}>Go to /abc</button>
+        <button onClick={() => navigate("/users/3")}>Go to /users/3 page</button>
       </div>
     </div>
   )

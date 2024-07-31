@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.jsx'
 import UserByIdPage from './pages/UserByIdPage.jsx'
 import UserAboutPage from './pages/UserAboutPage.jsx'
+import { AuthProvider } from './context/AuthContext.jsx'
+import ProtectedRoute from './containers/ProtectedRoute.jsx'
 import './index.css'
 
 const rootElement = document.getElementById('root')
@@ -21,16 +23,18 @@ const router = createBrowserRouter([
   },
   {
     path: "/users/:userId",
-    element: <UserByIdPage />
+    element: <ProtectedRoute><UserByIdPage /></ProtectedRoute>
   },
   {
     path: "/users/:userId/about",
-    element: <UserAboutPage />
+    element: <ProtectedRoute><UserAboutPage /></ProtectedRoute>
   }
 ])
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )
